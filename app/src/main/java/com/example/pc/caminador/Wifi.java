@@ -29,7 +29,7 @@ public class Wifi extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), "Conectado por 3G", Toast.LENGTH_LONG).show();
                // tv1.setText(tv1.getText() + "No Conectado a Wifi");
                 //return (false); //Activamos con el dispositivo real
-                return (true);
+                return (false);
                 //Si no esta por 3G comprovamos si está conectado o conectandose al wifi...
             } else {
                 if (wifi == NetworkInfo.State.CONNECTED || wifi == NetworkInfo.State.CONNECTING) {
@@ -50,4 +50,5 @@ public class Wifi extends AppCompatActivity {
 
         return (false);
 
-    }  }
+    }
+}

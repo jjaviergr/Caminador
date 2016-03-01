@@ -32,9 +32,9 @@ public class MarshallArray implements Marshal {
             for (int j = 0; j < myArray[i].length; j++)
             {
 
-                    writer.startTag("", "string");
-                    writer.text(myArray[i][j]);
-                    writer.endTag("", "string");
+                writer.startTag("", "string");
+                writer.text(myArray[i][j]);
+                writer.endTag("", "string");
             }
 
 
