@@ -4,9 +4,12 @@ package com.example.pc.caminador;
  * Created by pc on 29/02/2016.
  */
 public class Coordenada {
+    private String id;
     private String latitud;
     private String longitud;
     private String fecha;
+
+    public Coordenada(){}
 
     public Coordenada(String latitud, String longitud, String fecha) {
         this.latitud = latitud;
@@ -36,5 +39,13 @@ public class Coordenada {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
