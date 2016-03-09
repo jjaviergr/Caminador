@@ -1,7 +1,9 @@
 package com.example.pc.caminador;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -120,22 +122,19 @@ public class Receptor_Coordenadas extends AppCompatActivity {
         //bodyIn is the body object received with this envelope
         if (envelope.bodyIn != null) {
             //getProperty() Returns a specific property at a certain index.
-            SoapObject Table =(SoapObject) envelope.bodyIn;
+            SoapObject Table = (SoapObject) envelope.bodyIn;
 
-            String [][]output=null;
-            if(Table!=null)
-            {
+            String[][] output = null;
+            if (Table != null) {
                 SoapObject row = (SoapObject) Table.getProperty(0);
 
-                if(row!=null)
-                {
+                if (row != null) {
                     int rCount = Table.getPropertyCount();
-                    int cCount = ((SoapObject)Table.getProperty(0)).getPropertyCount();
+                    int cCount = ((SoapObject) Table.getProperty(0)).getPropertyCount();
                     output = new String[rCount][cCount];
-                    for(int i=0;i<rCount;i++)
-                    {
-                        for(int j=0;j<cCount;j++)
-                            output[i][j] =((SoapObject)Table.getProperty(i)).getProperty(j).toString();
+                    for (int i = 0; i < rCount; i++) {
+                        for (int j = 0; j < cCount; j++)
+                            output[i][j] = ((SoapObject) Table.getProperty(i)).getProperty(j).toString();
                     }
 
                 }
@@ -205,27 +204,26 @@ public class Receptor_Coordenadas extends AppCompatActivity {
             String cad = "";
             for (int i = 0; i < Vcoordenadas.length; i++) {
 
-                for (int j = 0; j < Vcoordenadas[0].length; j++){
+                for (int j = 0; j < Vcoordenadas[0].length; j++) {
                     cad += Vcoordenadas[i][j];
+                }
             }
-        }
-            String cadena="";
-            String[] corte1=cad.split("stringArray\\{");
+            String cadena = "";
+            String[] corte1 = cad.split("stringArray\\{");
 
-            ArrayList<ArrayList<String[]>>  corte2=new ArrayList<ArrayList<String[]>>();
+            ArrayList<ArrayList<String[]>> corte2 = new ArrayList<ArrayList<String[]>>();
             for (int i = 0; i < corte1.length; i++) {
-                ArrayList<String[]> Elemento=new ArrayList<String[]>();
+                ArrayList<String[]> Elemento = new ArrayList<String[]>();
                 Elemento.add(corte1[i].split(";"));
                 corte2.add(Elemento);
             }
 
-            for (int i = 0; i < corte2.size(); i++)
-            {
+            for (int i = 0; i < corte2.size(); i++) {
                 for (int j = 0; j < corte2.get(i).size(); j++) {
                     ArrayList<String[]> Elemento = corte2.get(i);
-                    for (int z=0;z<Elemento.get(j).length;z++)
-                        cadena += Elemento.get(j)[z].toString().replaceAll("item=","") ;
-                    cadena=cadena.replaceAll("\\}","");
+                    for (int z = 0; z < Elemento.get(j).length; z++)
+                        cadena += Elemento.get(j)[z].toString().replaceAll("item=", "");
+                    cadena = cadena.replaceAll("\\}", "");
                     cadena += '|';
                 }
             }
@@ -237,7 +235,7 @@ public class Receptor_Coordenadas extends AppCompatActivity {
         }
 
         @Override
-        protected void onPreExecute () {
+        protected void onPreExecute() {
             Log.i(TAG, "onPreExecute");
 
 
@@ -275,6 +273,10 @@ public class Receptor_Coordenadas extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void onclickBotonMapa(View v) {
+        Intent i=new Intent(this,Map.class);
+        startActivity(i);
 
+    }
 
 }
