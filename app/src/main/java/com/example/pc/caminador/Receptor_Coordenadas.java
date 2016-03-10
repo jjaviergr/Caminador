@@ -2,6 +2,7 @@ package com.example.pc.caminador;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,8 +19,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.Marker;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -274,9 +280,15 @@ public class Receptor_Coordenadas extends AppCompatActivity {
     }
 
     public void onclickBotonMapa(View v) {
-        Intent i=new Intent(this,Map.class);
-        startActivity(i);
+        LinearLayout myContainer = (LinearLayout) findViewById(R.id.my_container);
+        int mapHeight = myContainer.getHeight();
+        int mapWidth = myContainer.getWidth();
 
+        MapFragment mMapFragment = MapFragment.newInstance();
+        FragmentTransaction fragmentTransaction =
+                getFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.my_container, mMapFragment);
+        fragmentTransaction.commit();
     }
 
 }

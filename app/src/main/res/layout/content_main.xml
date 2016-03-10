@@ -44,4 +44,6 @@
         android:layout_marginTop="21dp"
         android:onClick="onClickRecibir" />
 
+
+
 </RelativeLayout>
